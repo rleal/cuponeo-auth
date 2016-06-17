@@ -51,10 +51,23 @@ Opciones de ***grant_type***:
 - **client_credentials**
 - **https://coupons-auth.paynopain.com/grants/facebook**
     
-    Requerirá:
+    - Requerirá:
     
-    - facebook_access_token
-
+        - facebook_access_token
+        - user_type (user. commerce)
+    
+    - Si *user_type* es *commerce* se requiere:
+    
+        - commerce_name
+        - commerce_category
+        - commerce_address
+        - commerce_province
+        - commerce_city
+        - commerce_zip_code
+        - commerce_latitude
+        - commerce_longitude
+    
+        Si el usuario no existe se registrará una compañía, un comercio asociado y un usuario asociado a este comercio.
 
 
 + Request Grant Type: Password
