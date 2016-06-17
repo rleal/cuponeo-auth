@@ -1,0 +1,124 @@
+FORMAT: 1A
+HOST: http://polls.apiblueprint.org/
+
+# Cuponeo Auth
+
+
+API que añade una capa de autenticación a la API de Cuponeo http://docs.cuponeo.apiary.io/
+
+
+# Data Structures
+
+## Data Objects
+
+### OAuth AccessToken Response (object)
++ access_token: NzAyMmVkNjEwNTlhMDBkNzdkODI4NGM0MmVlMTQxM2YwOWFmN2FlMTc4ZGY5ZGI0MWM3MWU1OTI1MGRhMTU0MQ
++ expires_in: 3600 (number)
++ token_type: bearer
++ scope
++ refresh_token: NzZjZjc5MjQyNDg3MTI5MzQwZDMzNWQyYzkzZjBiNjgyYmI2YWFhNDViYTBhNjMxYjRjNTZlYmQyMjZkNjBjMQ
+
+### OAuth AccessToken Error Response (object)
++ error: invalid_request
++ error_description: `Missing parameters. "username" and "password" required`
+
+
+
+# Group Ayuda
+## Generar nuevo Client
+
+Se pueden crear nuevos Client ejecutando un comando de consola. 
+Como parámetros hay que pasarle los *grant_type* que tendrá permitido utilizar.
+Se solicitará introducir la clave de cifrado de cuponeo y el id de la aplicación a que corresponde.
+
+Ejemplo: 
+`$ app/console app:oauth-server:client:create --grant-type="password" --grant-type="refresh_token" --grant-type="client_credentials"`
+
+
+# Group OAuth
+## OAuth Token [/oauth/v2/token]
+### Get Access Token [GET]
+
+Opciones de ***grant_type***:
+- **password**
+
+    Requerirá:
+
+    - username
+    - password
+    
+- **refresh_token**
+- **client_credentials**
+- **https://coupons-auth.paynopain.com/grants/facebook**
+    
+    Requerirá:
+    
+    - facebook_access_token
+
+
+
++ Request Grant Type: Password
+    + Attributes
+        + client_id (required)
+        + client_secret (required)
+        + grant_type (required)
+        
+
++ Response 200 (application/json)
+    + Attributes (OAuth AccessToken Response)
++ Response 400 (application/json)
+    + Attributes (OAuth AccessToken Error Response)
+    
+
+# Group User
+## User [/api/user]
+### Register [POST]
++ Request (application/json)
+    + Attributes
+        + username (required) - nombre de usuario o email
+        + password (required)
+        + name (required)
++ Response 201
++ Response 400
++ Response 409
+
+### Register User Commerce [POST]
++ Request (application/json)
+    + Attributes
+        + username (required) - nombre de usuario o email
+        + password (required)
+        + name (required)
+        + company_name (required)
+        + commerce_name (required) - Es obligatorio si se setea el campo company name y por tanto es un registro de usuario comercio
+        + commerce_city (required)
+        + commerce_country (required)
+        + commerce_logo 
+        + commerce_timezone
+        + commerce_email
+        + commerce_zip_code
+        + commerce_category_id (number)
+        + commerce_province
+        + commerce_address
+        + commerce_phone
+        + commerce_web
++ Response 201
++ Response 400
++ Response 409
+
+# Group Cuponeo
+## Llamada a Cuponeo [/api/coupons/call]
+### POST [POST]
+
+
++ Request (application/json)
+    + Headers
+    
+            Authorization: Bearer XXXXXXXX
+        
+    + Attributes
+        + method (required) - método HTTP a usar en llamada cuponeo
+        + fields (required) - parámetros a enviar
+        + action (required) - método API de Cuponeo
++ Response 200
++ Response 400
++ Response 403
