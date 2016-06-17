@@ -78,20 +78,10 @@ Opciones de ***grant_type***:
         + username (required) - nombre de usuario o email
         + password (required)
         + name (required)
-+ Response 201
-+ Response 400
-+ Response 409
-
-### Register User Commerce [POST]
-+ Request (application/json)
-    + Attributes
-        + username (required) - nombre de usuario o email
-        + password (required)
-        + name (required)
-        + company_name (required)
-        + commerce_name (required) - Es obligatorio si se setea el campo company name y por tanto es un registro de usuario comercio
-        + commerce_city (required)
-        + commerce_country (required)
+        + company_name
+        + commerce_name - Es obligatorio si se setea el campo company name y por tanto es un registro de usuario comercio
+        + commerce_city
+        + commerce_country
         + commerce_logo 
         + commerce_timezone
         + commerce_email
@@ -104,6 +94,7 @@ Opciones de ***grant_type***:
 + Response 201
 + Response 400
 + Response 409
+
 
 # Group Cuponeo
 ## Llamada a Cuponeo [/api/coupons/call]
