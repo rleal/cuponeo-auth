@@ -79,7 +79,12 @@ Opciones de ***grant_type***:
 
 + Response 200 (application/json)
     + Attributes (OAuth AccessToken Response)
+
 + Response 400 (application/json)
+Posibles **error**:
+    - *commerce registration require extra fields*:  *user_type* es *commerce*, no está registrado y falta algún campo requerido 
+    - *invalid_request*
+    
     + Attributes (OAuth AccessToken Error Response)
     
 
