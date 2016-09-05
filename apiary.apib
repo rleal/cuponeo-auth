@@ -22,6 +22,9 @@ API que añade una capa de autenticación a la API de Cuponeo http://docs.cupone
 + error: invalid_request
 + error_description: `Missing parameters. "username" and "password" required`
 
+### Error Response (object)
++ code: 418 (number)
++ message: `I'm a teapot` - Error description
 
 
 # Group Ayuda
@@ -113,6 +116,57 @@ Posibles **error**:
 + Response 400
 + Response 409
 
+## User Password Request [/api/user/resetting/request]
+### Request Passsword Reset [POST]
+
+La llamada debe ser autenticada a nivel de aplicación. Basta con un token de *client_credentials*
+
++ Request (application/json)
+    + Headers
+            
+            Authorization: Bearer XXXXXX
+        
+    + Attributes
+        + username: test@mail.com (required) - (DEPRECATED) nombre de usuario o email
+
++ Response 200
+
++ Response 404 (application/json)
+        
+    + Attributes (Error Response)
+    
++ Response 422
+    + Attributes (Error Response)
+    
+    
+## User Reset Password [/api/user/resetting/reset/{token}]
+### Reset Password [POST]
++ Request (application/json)
+    + Parameters
+        + token
++ Response 200
+
+## User Change Password [/api/user/profile/change-password]
+
+### Change Password [POST]
++ Request (application/json)
+    + Headers
+            
+            Authorization: Bearer XXXXXX
+        
+    + Attributes
+        + `old_password`: pass_1234 (required) - Antigua contraseña
+        + `password`: new_pass_1234 (required) - Nueva contraseña
+
++ Response 200
+
++ Response 404 (application/json)
+        
+    + Attributes (Error Response)
+    
++ Response 422
+    + Attributes (Error Response)
+    
 
 # Group Cuponeo
 ## Llamada a Cuponeo [/api/coupons/call]
