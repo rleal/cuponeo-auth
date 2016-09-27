@@ -101,8 +101,8 @@ Posibles **error**:
         + name (required)
         + company_name
         + commerce_name - Es obligatorio si se setea el campo company name y por tanto es un registro de usuario comercio
-        + commerce_city
-        + commerce_country
+        + commerce_city - Es obligatorio si se setea el campo company name y por tanto es un registro de usuario comercio
+        + commerce_country - Es obligatorio si se setea el campo company name y por tanto es un registro de usuario comercio
         + commerce_logo 
         + commerce_timezone
         + commerce_email
@@ -112,6 +112,9 @@ Posibles **error**:
         + commerce_address
         + commerce_phone
         + commerce_web
+        + commerce_latitude - Latitud del geoposicionamiento del comercio
+        + commerce_longitude - Longitud del geoposicionamiento del comercio
+        + commerce_cif
 + Response 201
 + Response 400
 + Response 409
